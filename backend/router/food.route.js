@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
-const foodShema = require("../models/food.db"),
-  typeShema = require("../models/type.db"),
-  subtypeShema = require("../models/subtype.db");
+const foodShema = require("../models/food.db");
 
 //create food
 router
