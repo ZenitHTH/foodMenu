@@ -1,29 +1,48 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const router = express.router;
+const router = express.Router();
 
-const foodShame = require("../models/food.db"),
-  typeShame = require("../models/type.db"),
-  subtypeShame = require("../models/subtype.db");
-
+const foodShema = require("../models/food.db"),
+  typeShema = require("../models/type.db"),
+  subtypeShema = require("../models/subtype.db");
 
 //create food
-router.route('/create-food').post((req,res,next)={
+router
+  .route("/")
+  .post(async (req, res) => {
     /*
-        name , price , type -> string , subtype -> string
+        request JSON
+        {
+            idtype:objectid
+            idsubtype:[objectid...]
+            name:namefood
+            price:pricefood
+        }
     */
 
-
-})
-
-//create type
-
+    await foodShema.create(req.body, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(data);
+        res.status(201).end();
+      }
+    });
+  })
+  .get((req, res, next) => {
+    foodShema.find((err, data) => {
+      if (err) {
+        console.log(err);
+        next(err);
+      } else {
+        res.json(data);
+        res.status(200).end();
+      }
+    });
+  });
 
 //delete food
 
-
-
-
 //edit food
 
-
+module.exports = router;
