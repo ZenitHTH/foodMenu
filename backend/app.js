@@ -9,6 +9,7 @@ const dbConfig = require("./dbConfig/db");
 const foodRoute = require("./router/food.route");
 const typeRoute = require("./router/type.route");
 const subtypeRoute = require("./router/subtype.route");
+const mainRoute = require("./router/main.route");
 //MongoDB
 mongoose.Promise = global.Promise;
 //conecting DB
@@ -30,9 +31,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //route call
 app.use(cors());
+app.use("/", mainRoute);
 app.use("/type", typeRoute);
 app.use("/subtype", subtypeRoute);
 app.use("/food", foodRoute);
+
 //Server config
 const port = process.env.port || 4000;
 const server = app.listen(port, () => {
