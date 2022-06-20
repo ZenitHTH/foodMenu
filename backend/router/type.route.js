@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
 const express = require("express");
 const router = express.Router();
 
 const typeShema = require("../models/type.db");
 
+// main root use for call datas and insert data
 router
   .route("/")
   .post((req, res, next) => {
@@ -25,6 +25,7 @@ router
       }
     });
   });
+
 router
   .route("/:id")
   // show a data
@@ -51,6 +52,7 @@ router
       }
     );
   })
+  // delete a data
   .delete((req, res, next) => {
     typeShema.findOneAndDelete(req.params.id, (err, data) => {
       if (err) {
