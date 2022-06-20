@@ -2,15 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 let foodSchema = new Schema({
-  idfood: Number,
-  idtype: Number,
-  idSubType: Number,
+  idtype: mongoose.Types.ObjectId,
+  idsubtype: [mongoose.Types.ObjectId],
   name: String,
   price: Number,
 });
 
-module.exports = mongoose.module("food", foodSchema);
+module.exports = mongoose.model("food", foodSchema);
 
-module.exports.saveProduct = (model, data) => {
+module.exports.save = (model, data) => {
   model.save(data);
 };
