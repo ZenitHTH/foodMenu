@@ -9,23 +9,20 @@ import {
 } from "react-router-dom";
 
 import MainNavBar from "./components/navbar";
-import TypeList from "./components/type/list-type.component";
-
+import Home from "./components/home";
+import TypeList from "./components/type/edit-type.component";
+import TypeCreate from "./components/type/create-type.component";
 function App() {
   return (
     <div className="App">
       <MainNavBar />
 
       <Routes>
-        <Route path="/" />
-        <Route path="/type">
-          <Route></Route>
-          <Route></Route>
-        </Route>
-        <Route path="/subtype">
-          <Route></Route>
-          <Route></Route>
-        </Route>
+        <Route index element={<Home />} />
+        <Route path="/type" element={<TypeList />} />
+        <Route path="/type/create" element={<TypeCreate />} />
+        <Route path="/subtype" />
+        <Route />
       </Routes>
     </div>
   );
